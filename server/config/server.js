@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const passport = require('passport');
 
-require('./auth/passport');
 require('./auth/google-strategy')(passport);
 const routes = require('../routes');
 const logger = require('./logger');

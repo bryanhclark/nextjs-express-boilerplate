@@ -1,6 +1,8 @@
 const { Schema } = require('mongoose');
 
 module.exports = Schema({
-  email: String,
-  password: String,
+  firstName: { type: String },
+  lastName: { type: String },
+  email: { type: String },
+  password: { type: String },
 });

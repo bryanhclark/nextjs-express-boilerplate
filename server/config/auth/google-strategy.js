@@ -1,4 +1,5 @@
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+const { getUserById } = require('../../services/user');
 
 // Use the GoogleStrategy within Passport.
 //   Strategies in Passport require a `verify` function, which accept
@@ -10,11 +11,22 @@ module.exports = passport => {
     clientSecret: 'WsHXEHzqnYL2yGriKBp7992a',
     callbackURL: "http://localhost:4000/auth/google/callback"
   },
-    function (accessToken, refreshToken, profile, done) {
-      console.log('acessToken: ', accessToken);
-      console.log('refreshToken: ', refreshToken);
-      console.log('profile: ', profile);
-      done();
+    (accessToken, refreshToken, profile, done) => {
+      done(null, profile);
     }
   ));
+
+
+  passport.serializeUser((user, done) => {
+    done(null, user);
+  });
+
+  passport.deserializeUser(async (userId, done) => {
+    try {
+      const user = await getUserById(userId);
+      done(null, JSON.parse(JSON.stringify(user)));
+    } catch (err) {
+      done(err);
+    }
+  });
 };
