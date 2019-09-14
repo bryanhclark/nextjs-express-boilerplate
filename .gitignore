@@ -1,0 +1,9 @@
+app/.next
+app/out
+build
+
+node_modules
+
+.env
+
+coverage
