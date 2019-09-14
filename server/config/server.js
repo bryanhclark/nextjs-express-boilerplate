@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser');
 const passport = require('passport');
 
 require('./auth/passport');
+require('./auth/google-strategy')(passport);
 const routes = require('../routes');
 const logger = require('./logger');
 
@@ -16,7 +17,6 @@ const startServer = nextApp => {
   server.use(bodyParser.urlencoded({ extended: true }));
   server.use(passport.initialize());
   server.use(passport.session());
-  //server.use(https);
 
   routes.init(server, nextApp);
 

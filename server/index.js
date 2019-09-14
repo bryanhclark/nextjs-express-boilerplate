@@ -1,5 +1,8 @@
 const next = require('next');
-const { connectToDB, logger, startServer } = require('./config/');
+
+const connectToDB = require('./db');
+const { logger, startServer } = require('./config/');
+
 
 const dev = process.env.NODE_ENV !== 'production';
 const nextApp = next({ dir: './app', dev });
