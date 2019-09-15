@@ -9,5 +9,6 @@
         }
       }
     ]
-  ]
+  ],
+  "plugins": [["styled-components", { "ssr": true }]]
  }

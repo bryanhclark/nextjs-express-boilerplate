@@ -1,5 +1,4 @@
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-const { getUserById } = require('../../services/user');
 
 // Use the GoogleStrategy within Passport.
 //   Strategies in Passport require a `verify` function, which accept
@@ -7,8 +6,8 @@ const { getUserById } = require('../../services/user');
 //   profile), and invoke a callback with a user object.
 module.exports = passport => {
   passport.use(new GoogleStrategy({
-    clientID: '1053211937238-t42i02cpp5rkt2tddqmqkgcj2eqlissc.apps.googleusercontent.com',
-    clientSecret: 'WsHXEHzqnYL2yGriKBp7992a',
+    clientID: '420105528205-vp1v2emc0g9a5kka2a1ql1u19152ev32.apps.googleusercontent.com',
+    clientSecret: 'q9N2IDButvweBsNlGZDhyxdo',
     callbackURL: "http://localhost:4000/auth/google/callback"
   },
     (accessToken, refreshToken, profile, done) => {
@@ -21,12 +20,7 @@ module.exports = passport => {
     done(null, user);
   });
 
-  passport.deserializeUser(async (userId, done) => {
-    try {
-      const user = await getUserById(userId);
-      done(null, JSON.parse(JSON.stringify(user)));
-    } catch (err) {
-      done(err);
-    }
+  passport.deserializeUser((user, done) => {
+    done(null, user);
   });
 };

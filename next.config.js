@@ -17,5 +17,8 @@ module.exports = withCSS({
       },
     });
     return config;
-  }
+  },
+  publicRuntimeConfig: {
+    protocol: process.env.NODE_ENV === 'production' ? 'https' : 'http',
+  },
 });
